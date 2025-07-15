@@ -59,7 +59,7 @@ RUN apt update && \
 RUN ln -s /usr/bin/python3.10 /usr/bin/python
 
 # Stage 2: Install FaceFusion and python modules
-FROM base as setup
+FROM base AS setup
 
 # Install FaceFusion
 WORKDIR /
