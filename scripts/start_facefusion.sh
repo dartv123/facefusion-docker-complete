@@ -16,6 +16,11 @@ else
     export THREAD_COUNT=8
 fi
 
+# If not already present in /workspace, copy from image layer
+if [ ! -d /workspace/facefusion ]; then
+  cp -r /facefusion /workspace/facefusion
+fi
+
 echo "Starting FaceFusion"
 export HF_HOME="/workspace"
 cd /workspace/facefusion
