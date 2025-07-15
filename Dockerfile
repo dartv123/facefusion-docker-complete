@@ -67,9 +67,17 @@ ARG FACEFUSION_VERSION
 ARG FACEFUSION_CUDA_VERSION
 ARG PYTHON_VERSION
 ARG INDEX_URL
-ARG TORCH_VERSION
-ENV TORCH_INDEX_URL=${INDEX_URL}
+# Accept values during build
+ARG TORCH_VERSION=2.2.2
+ARG TORCH_INDEX_URL=https://download.pytorch.org/whl/cu121
+# ENV TORCH_INDEX_URL=${INDEX_URL}
+
+# Expose those as environment variables for later use
+ENV TORCH_VERSION=${TORCH_VERSION}
+ENV TORCH_INDEX_URL=${TORCH_INDEX_URL}
+
 ENV TORCH_COMMAND="pip3 install torch==${TORCH_VERSION} torchvision --index-url ${TORCH_INDEX_URL}"
+
 COPY --chmod=755 ../../build/install.sh /install.sh
 RUN /install.sh && rm /install.sh
 
